@@ -37,5 +37,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        tvPoint.setText("当前评分：-");
     }
 }

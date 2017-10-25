@@ -81,17 +81,17 @@ public class MyRatingBar extends ViewGroup {
         mPath.reset();
     }
 
-    private void initView(int count, int selectCount) {
+    private void initView(int maxPoint, int defaultPoint) {
         mViewList.clear();
         removeAllViews();
         final int itemTop = 0;
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < maxPoint; i++) {
             final View view = new View(getContext());
             view.setTop(itemTop);
             view.setLeft(mLastItemLeft);
             view.setBackgroundResource(mItemBackgroundSelector);
-            view.setSelected(i < selectCount);
-            if (i < count - 1) {
+            view.setSelected(i < defaultPoint);
+            if (i < maxPoint - 1) {
                 mLastItemLeft += mItemWidthPX + mItemPaddingPX;
             }
             this.addView(view);
@@ -99,12 +99,12 @@ public class MyRatingBar extends ViewGroup {
         }
     }
 
-    public void setItem(int count, int selectCount) {
-        if (count >= 2 && count <= 5) {
-            initView(count, selectCount);
+    public void setItem(int maxPoint, int defaultPoint) {
+        if (maxPoint >= 2 && maxPoint <= 5) {
+            initView(maxPoint, defaultPoint);
             invalidate();
         } else {
-            throw new IllegalAccessError("选项最少要两个，最多只能5个");
+            throw new IllegalAccessError("选项最少要2个，最多只能5个");
         }
     }
 
