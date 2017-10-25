@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MyRatingBar">
+        <attr name="can_set_zero_point" format="boolean" />
+        <attr name="item_width" format="dimension" />
+        <attr name="item_height" format="dimension" />
+        <attr name="item_padding" format="dimension" />
+        <attr name="item_background_selector" format="reference" />
+        <attr name="line_width" format="dimension" />
+        <attr name="line_color_normal" format="color" />
+        <attr name="line_color_selected" format="color" />
+    </declare-styleable>
+
+</resources>
