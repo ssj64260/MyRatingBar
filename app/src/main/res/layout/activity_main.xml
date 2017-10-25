@@ -21,6 +21,16 @@
         app:line_width="5dp" />
 
     <TextView
+        android:id="@+id/tv_point"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:background="#ff0000"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
+    <TextView
         android:id="@+id/tv_get_point"
         android:layout_width="match_parent"
         android:layout_height="40dp"

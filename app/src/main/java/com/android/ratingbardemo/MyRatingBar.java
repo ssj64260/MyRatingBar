@@ -26,6 +26,8 @@ public class MyRatingBar extends ViewGroup {
     private static final int ITEM_HEIGHT_DP = 30;
     private static final int LINE_WIDTH_DP = 2;
 
+    private OnPointChangeListener mPointChangeListener;
+
     private int mItemPaddingPX;
     private int mItemWidthPX;
     private int mItemHeightPX;
@@ -116,6 +118,10 @@ public class MyRatingBar extends ViewGroup {
         return point;
     }
 
+    public void setPointChangeListener(OnPointChangeListener pointChangeListener) {
+        this.mPointChangeListener = pointChangeListener;
+    }
+
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         final int childCount = getChildCount();
@@ -163,10 +169,17 @@ public class MyRatingBar extends ViewGroup {
 
     private void setStatus(int touchX) {
         int i = mCanSetZeroPoint ? 0 : 1;
+        int point = i;
         for (; i < mViewList.size(); i++) {
             final View view = mViewList.get(i);
             final int viewLeft = view.getLeft();
             view.setSelected(touchX > viewLeft);
+            if (view.isSelected()) {
+                point++;
+            }
+        }
+        if (mPointChangeListener != null) {
+            mPointChangeListener.onPointChangeListener(point);
         }
         invalidate();
     }
@@ -185,5 +198,9 @@ public class MyRatingBar extends ViewGroup {
                 break;
         }
         return true;
+    }
+
+    public interface OnPointChangeListener {
+        void onPointChangeListener(int point);
     }
 }
