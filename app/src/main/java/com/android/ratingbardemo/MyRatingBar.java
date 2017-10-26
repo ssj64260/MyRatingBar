@@ -154,7 +154,7 @@ public class MyRatingBar extends ViewGroup {
     @Override
     protected void onDraw(Canvas canvas) {
 //        super.onDraw(canvas);
-        if (mLineWidthPX > 0) {
+        if (mItemPaddingPX > 0) {
             for (int i = 1; i < mViewList.size(); i++) {
                 final View leftView = mViewList.get(i - 1);
                 final View view = mViewList.get(i);
