@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:background="#ffffff"
+        app:only_show="false"
         app:can_set_zero_point="false"
         app:item_background_selector="@drawable/selector_ratingbar"
         app:item_height="40dp"

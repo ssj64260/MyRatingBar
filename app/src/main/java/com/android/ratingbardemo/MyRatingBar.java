@@ -39,6 +39,7 @@ public class MyRatingBar extends ViewGroup {
     private int mLineColorNormal;
     private int mLineColorSelected;
 
+    private boolean mOnlyShow = false;
     private boolean mCanSetZeroPoint = true;//是否能给零分
 
     private Paint mPaint;//连线样式
@@ -58,6 +59,7 @@ public class MyRatingBar extends ViewGroup {
         super(context, attrs, defStyleAttr);
 
         final TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.MyRatingBar, defStyleAttr, 0);
+        mOnlyShow = ta.getBoolean(R.styleable.MyRatingBar_only_show, false);
         mCanSetZeroPoint = ta.getBoolean(R.styleable.MyRatingBar_can_set_zero_point, true);
         mItemWidthPX = ta.getDimensionPixelSize(R.styleable.MyRatingBar_item_width, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, ITEM_WIDTH_DP, DisplayUtil.getMetrics()));
         mItemHeightPX = ta.getDimensionPixelSize(R.styleable.MyRatingBar_item_height, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, ITEM_HEIGHT_DP, DisplayUtil.getMetrics()));
@@ -116,6 +118,10 @@ public class MyRatingBar extends ViewGroup {
             }
         }
         return point;
+    }
+
+    public void setOnlyShow(boolean onlyShow) {
+        mOnlyShow = onlyShow;
     }
 
     public void setPointChangeListener(OnPointChangeListener pointChangeListener) {
@@ -186,16 +192,18 @@ public class MyRatingBar extends ViewGroup {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        final int action = event.getAction();
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-            case MotionEvent.ACTION_MOVE:
-                final int currentTouchX = (int) event.getX();
-                setStatus(currentTouchX);
-                break;
-            case MotionEvent.ACTION_UP:
+        if (!mOnlyShow) {
+            final int action = event.getAction();
+            switch (action) {
+                case MotionEvent.ACTION_DOWN:
+                case MotionEvent.ACTION_MOVE:
+                    final int currentTouchX = (int) event.getX();
+                    setStatus(currentTouchX);
+                    break;
+                case MotionEvent.ACTION_UP:
 
-                break;
+                    break;
+            }
         }
         return true;
     }

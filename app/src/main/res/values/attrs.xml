@@ -2,6 +2,7 @@
 <resources>
 
     <declare-styleable name="MyRatingBar">
+        <attr name="only_show" format="boolean" />
         <attr name="can_set_zero_point" format="boolean" />
         <attr name="item_width" format="dimension" />
         <attr name="item_height" format="dimension" />
