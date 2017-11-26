@@ -87,6 +87,7 @@ public class MyRatingBar extends ViewGroup {
         mViewList.clear();
         removeAllViews();
         final int itemTop = 0;
+        mLastItemLeft = 0;
         for (int i = 0; i < maxPoint; i++) {
             final View view = new View(getContext());
             view.setTop(itemTop);
@@ -102,11 +103,11 @@ public class MyRatingBar extends ViewGroup {
     }
 
     public void setItem(int maxPoint, int defaultPoint) {
-        if (maxPoint >= 2 && maxPoint <= 5) {
+        if (maxPoint >= 1 && maxPoint <= 5) {
             initView(maxPoint, defaultPoint);
             invalidate();
         } else {
-            throw new IllegalAccessError("选项最少要2个，最多只能5个");
+            throw new IllegalAccessError("选项最少要1个，最多只能5个");
         }
     }
 
